@@ -1,0 +1,32 @@
+{
+  "name": "sistema_operativo",
+  "license": "0BSD",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^14.0.4",
+    "@react-native-community/netinfo": "^11.4.1",
+    "@react-navigation/native": "^7.1.4",
+    "@react-navigation/stack": "^7.2.8",
+    "expo": "~52.0.43",
+    "expo-battery": "~9.0.2",
+    "expo-camera": "~16.0.18",
+    "expo-media-library": "~17.0.6",
+    "expo-status-bar": "~2.0.1",
+    "react": "18.3.1",
+    "react-native": "0.76.9",
+    "react-native-gesture-handler": "~2.20.2",
+    "react-native-safe-area-context": "4.12.0",
+    "react-native-vision-camera": "^4.6.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0"
+  },
+  "private": true
+}
