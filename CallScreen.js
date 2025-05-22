@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Linking } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Linking, Keyboard } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const CallScreen = ({ navigation }) => {
@@ -8,6 +8,7 @@ const CallScreen = ({ navigation }) => {
     const makeCall = () => {
         if (phoneNumber.trim() !== '') {
             Linking.openURL(`tel:${phoneNumber}`);
+            Keyboard.dismiss(); // Para ocultar el teclado después de hacer la llamada
         } else {
             alert('Ingrese un número válido');
         }
@@ -25,13 +26,61 @@ const CallScreen = ({ navigation }) => {
 
             {/* Campo de texto para ingresar el número */}
             <TextInput
+                //inhabilitar el teclado nativo
+                editable={false}
                 style={styles.input}
                 placeholder="Ingrese un número"
                 placeholderTextColor="#aaa"
-                keyboardType="phone-pad"
+                keyboardType="numeric" // Este es el teclado numérico
                 value={phoneNumber}
                 onChangeText={setPhoneNumber}
+                maxLength={15} // Limitar la cantidad de caracteres
             />
+
+            {/* Teclado numérico personalizado */}
+            <View style={styles.keypad}>
+                <View style={styles.row}>
+                    <TouchableOpacity onPress={() => setPhoneNumber(phoneNumber + '1')} style={styles.key}>
+                        <Text style={styles.keyText}>1</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setPhoneNumber(phoneNumber + '2')} style={styles.key}>
+                        <Text style={styles.keyText}>2</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setPhoneNumber(phoneNumber + '3')} style={styles.key}>
+                        <Text style={styles.keyText}>3</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.row}>
+                    <TouchableOpacity onPress={() => setPhoneNumber(phoneNumber + '4')} style={styles.key}>
+                        <Text style={styles.keyText}>4</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setPhoneNumber(phoneNumber + '5')} style={styles.key}>
+                        <Text style={styles.keyText}>5</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setPhoneNumber(phoneNumber + '6')} style={styles.key}>
+                        <Text style={styles.keyText}>6</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.row}>
+                    <TouchableOpacity onPress={() => setPhoneNumber(phoneNumber + '7')} style={styles.key}>
+                        <Text style={styles.keyText}>7</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setPhoneNumber(phoneNumber + '8')} style={styles.key}>
+                        <Text style={styles.keyText}>8</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setPhoneNumber(phoneNumber + '9')} style={styles.key}>
+                        <Text style={styles.keyText}>9</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.row}>
+                    <TouchableOpacity onPress={() => setPhoneNumber(phoneNumber + '0')} style={styles.key}>
+                        <Text style={styles.keyText}>0</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setPhoneNumber('')} style={styles.key}>
+                        <Text style={styles.keyText}>Borrar</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
 
             {/* Botón para llamar */}
             <TouchableOpacity style={styles.callButton} onPress={makeCall}>
@@ -63,6 +112,27 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: 'white',
         marginBottom: 20,
+    },
+    keypad: {
+        width: '80%',
+        marginBottom: 20,
+    },
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 10,
+    },
+    key: {
+        width: '30%',
+        height: 60,
+        backgroundColor: '#333',
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    keyText: {
+        color: 'white',
+        fontSize: 24,
     },
     callButton: {
         flexDirection: 'row',

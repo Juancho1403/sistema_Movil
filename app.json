@@ -16,8 +16,10 @@
       "supportsTablet": true,
       "infoPlist": {
         "NSCameraUsageDescription": "$(PRODUCT_NAME) needs access to your Camera.",
-        "NSMicrophoneUsageDescription": "$(PRODUCT_NAME) needs access to your Microphone."
-      }
+        "NSMicrophoneUsageDescription": "$(PRODUCT_NAME) needs access to your Microphone.",
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "bundleIdentifier": "com.emiliooo.sistemaoperativo"
     },
     "android": {
       "adaptiveIcon": {
@@ -25,8 +27,6 @@
         "backgroundColor": "#ffffff"
       },
       "permissions": [
-        "android.permission.CAMERA",
-        "android.permission.RECORD_AUDIO",
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO"
       ],
@@ -44,6 +44,11 @@
           "microphonePermissionText": "$(PRODUCT_NAME) needs access to your Microphone."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "a379b519-8524-4f15-bbd8-1bc1f323bf2f"
+      }
+    }
   }
 }
